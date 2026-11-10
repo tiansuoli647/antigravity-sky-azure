@@ -18,6 +18,14 @@
   <i>A unified, non-destructive optical engine bringing true behind-window transparency, tactile Gaussian blur, and crisp sky-azure aesthetics to Google Antigravity.</i>
 </p>
 
+<p align="center">
+  <img src="assets/hero-showcase.png" alt="SkyAzure Glass Hero Showcase" width="100%" />
+  <br />
+  <sub><b>图 1：晴空碧海全景透视主视觉展示</b>（Antigravity IDE 晴空碧海主窗口实时穿透 Windows 11 桌面景深，包含顶栏 <code>Sky Glass · ON</code> 悬浮胶囊、42% 侧栏、22% 高透主画布、58% 菲涅尔冰晶高光卡片与右侧 Studio 控制台）</sub>
+  <br />
+  <sub><i>Figure 1: Full-scene perspective showcase of SkyAzure Glass in Antigravity IDE penetrating Windows 11 desktop depth of field, featuring top floating capsule (<code>Sky Glass · ON</code>), 42% sidebar, 22% canvas, 58% Fresnel specular cards, and Studio console.</i></sub>
+</p>
+
 ---
 
 </div>
@@ -99,6 +107,15 @@ flowchart TD
 
 ## 🎛️ 光学参数规范表 (Optical Parameter Specification)
 
+<div align="center">
+  <img src="assets/optical-comparison.png" alt="Optical Comparison" width="100%" />
+  <p>
+    <sub><b>图 2：光学穿透模式与三级景深梯度对比</b>（直观展示 <code>blurbehind</code> 清透毛玻璃透视、<code>clear</code> 高清无损穿透、<code>acrylic</code> Win11 原生重度亚克力三种模式的物理光学差异，以及 <code>Canvas (22%) &rarr; Sidebar (42%) &rarr; Cards (58%)</code> 的三级景深不透明度梯度）</sub>
+    <br />
+    <sub><i>Figure 2: Physical optical comparison across backdrop modes (<code>blurbehind</code>, <code>clear</code>, <code>acrylic</code>) and the three-tier depth-of-field opacity gradient (<code>Canvas 22% &rarr; Sidebar 42% &rarr; Cards 58%</code>).</i></sub>
+  </p>
+</div>
+
 配置文件默认持久化存储于 `%LOCALAPPDATA%\AntigravityGlass\settings.json`。核心光学参量定义如下：
 
 | 参数名称 (Key) | 数据类型 (Type) | 取值范围 (Range) | 推荐默认值 (Default) | 物理光学含义与工程效果说明 (Physical & Optical Meaning) |
@@ -155,6 +172,15 @@ python "$env:USERPROFILE\.gemini\config\plugins\antigravity-glass\compat\patch-l
 3. 拖动滑块实时预览高斯模糊、晴空饱和度及不同区域透明度的交互变化。
 4. 点击顶部切换按钮或主窗口右上角的悬浮胶囊随时一键启用/禁用透视效果。
 
+<div align="center">
+  <img src="assets/studio-panel.png" alt="Sky Azure Glass Studio Dual Mode" width="100%" />
+  <p>
+    <sub><b>图 3：Sky Azure Glass Studio 明暗自适应双模与双语控制台</b>（展示浅色模式 / 中文与深色模式 / English 自适应双模实时调控面板）</sub>
+    <br />
+    <sub><i>Figure 3: Sky Azure Glass Studio console showcase featuring adaptive light (Chinese) and dark (English) themes with real-time tuning controls.</i></sub>
+  </p>
+</div>
+
 ### 步骤 4：通过内置 AI 智能体调控 (AI Skill Integration)
 
 本项目内置符合标准规范的专用 AI Skill：[`glass-theme-control`](skills/glass-theme-control/SKILL.md)。
@@ -175,18 +201,27 @@ antigravity-sky-azure/
 ├── README.md                    # 项目工程与光学规范中英说明文档
 ├── plugin.json                  # Antigravity 插件清单与元数据说明
 ├── assets/
-│   └── logo.svg                 # 晴空碧海矢量徽标 (Sky Azure Vector Brand)
+│   ├── hero-showcase.png        # 晴空碧海桌面景深全景主视觉展示图 (Hero Showcase)
+│   ├── logo.svg                 # 晴空碧海矢量徽标 (Sky Azure Vector Brand)
+│   ├── optical-comparison.png   # 光学穿透模式与三级景深梯度对比图 (Optical Comparison)
+│   └── studio-panel.png         # Studio 控制台明暗双模与双语界面展示图 (Studio Panel Showcase)
 ├── compat/
 │   ├── acrylic-underlay.ps1     # Win32 DWM 亚克力与穿透事件同步守护脚本
 │   ├── glass-renderer.cjs       # 宿主 DOM 注入与分层光学 CSS 渲染器
 │   ├── patch-loader.py          # SHA-256 校验可逆无损 ASAR 补丁加载器
 │   ├── platform.mjs             # 跨平台路径解析与数据持久化定位
 │   ├── preferences.mjs          # 光学参数模式校验、规范化与存储管理器
-│   └── runtime-glass.mjs        # CDP 协议网关与本地 IPC 实时桥接服务
+│   ├── runtime-glass.mjs        # CDP 协议网关与本地 IPC 实时桥接服务
+│   └── sidecar-owner.mjs        # Sidecar 辅助进程单例生命周期与端口占位管理器
 ├── sidecars/
 │   └── panel/
-│       ├── index.html           # Sky Azure Glass Studio 图形控制台 UI
-│       └── styles.css           # 控制台高质感晴空视觉与交互控件样式
+│       ├── app.js               # Studio 前端交互逻辑、双语国际化与 IPC 状态联动
+│       ├── index.html           # Sky Azure Glass Studio 图形控制台 UI 结构
+│       ├── main.mjs             # Sidecar 后端微服务 (HTTP 路由、CDP 桥接与系统 IPC)
+│       ├── package.json         # Panel Sidecar 独立包配置与模块定义 (ESM)
+│       ├── sdk.mjs              # Antigravity 官方 Sidecar SDK 规范加载器与桩模块
+│       ├── sidecar.json         # Antigravity Sidecar 进程生命周期与辅助面板清单
+│       └── styles.css           # 控制台高质感晴空视觉与自适应明暗主题样式
 └── skills/
     └── glass-theme-control/
         └── SKILL.md             # Antigravity AI 智能体自然语言调控协议规范
