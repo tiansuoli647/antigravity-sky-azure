@@ -1,0 +1,18 @@
+{
+  "command": "node",
+  "args": ["main.mjs"],
+  "restart_policy": "always",
+  "display_name": "Antigravity Glass Studio",
+  "description": "Real-time glassmorphism, acrylic blur, ambient aurora, and wallpaper control panel.",
+  "has_web_ui": true,
+  "ui_config": {
+    "display_name": "Antigravity Glass Studio",
+    "views": [
+      {
+        "path": "/",
+        "entrypoint": "SIDECAR_UI_ENTRYPOINT_AUX_PANE",
+        "title": "Antigravity Glass Studio"
+      }
+    ]
+  }
+}

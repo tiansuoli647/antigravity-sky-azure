@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="color-scheme" content="light dark">
+  <title>晴空碧海 · 毛玻璃透视工作台</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/preload.js"></script>
+</head>
+<body>
+  <div class="studio">
+    <!-- Top Header -->
+    <header class="studio-header">
+      <div class="brand">
+        <div class="brand-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <rect x="3" y="4" width="13" height="13" rx="4" fill="currentColor" fill-opacity="0.2"/>
+            <rect x="3" y="4" width="13" height="13" rx="4" stroke="currentColor" stroke-width="1.6"/>
+            <rect x="8" y="7" width="13" height="13" rx="4" fill="var(--sky-accent)" fill-opacity="0.25"/>
+            <rect x="8" y="7" width="13" height="13" rx="4" stroke="var(--sky-accent)" stroke-width="1.6"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <h1 id="title-main">晴空碧海 · 透视毛玻璃</h1>
+          <p class="muted small" id="subtitle-main">桌面同款海天蔚蓝专属主题 · 窗口后方内容实时穿透</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button type="button" class="chip-btn" id="lang-btn" title="Switch Language" aria-label="Switch Language">EN</button>
+        <button type="button" class="toggle-btn" id="master-toggle" aria-pressed="true">
+          <span class="status-dot" id="status-dot"></span>
+          <span id="toggle-label">已开启</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Live Sky Azure Preview Banner -->
+    <section class="preview-stage" id="preview-stage" aria-label="Glass preview">
+      <div class="preview-backdrop-scene" aria-hidden="true">
+        <div class="scene-orb orb-1"></div>
+        <div class="scene-orb orb-2"></div>
+        <div class="scene-orb orb-3"></div>
+        <div class="scene-grid"></div>
+      </div>
+      <div class="preview-glass-card" id="preview-glass-card">
+        <div class="preview-card-top">
+          <div class="preview-card-title-wrap">
+            <span class="preview-pulse-dot" aria-hidden="true"></span>
+            <span class="preview-badge" id="preview-theme-badge">晴空碧海 (Sky Azure)</span>
+          </div>
+          <span class="preview-status" id="engine-health-badge">已挂载</span>
+        </div>
+        <div class="preview-metrics" id="preview-metrics">
+          Blur 22px · Sat 190% · 窗口透视率 78%
+        </div>
+      </div>
+    </section>
+
+    <!-- 1. Behind-Window See-Through Mode -->
+    <section class="card">
+      <div class="card-header">
+        <div class="card-header-titles">
+          <h2 id="sec-backdrop">窗口后方内容透视模式 (DWM)</h2>
+          <span class="muted small" id="sec-backdrop-hint">控制底层操作系统窗口穿透方式</span>
+        </div>
+      </div>
+      <div class="mode-grid" id="backdrop-grid" role="radiogroup" aria-labelledby="sec-backdrop">
+        <button type="button" class="mode-btn" data-mode="blurbehind" role="radio" aria-checked="true" aria-selected="true">
+          <div class="mode-btn-header">
+            <span class="mode-indicator" aria-hidden="true"></span>
+            <span class="mode-title" id="m-blur-title">清透毛玻璃透视 (推荐)</span>
+          </div>
+          <span class="mode-desc" id="m-blur-desc">清晰透视窗口后方壁纸与窗口，失焦亦保持透视</span>
+        </button>
+        <button type="button" class="mode-btn" data-mode="clear" role="radio" aria-checked="false" aria-selected="false">
+          <div class="mode-btn-header">
+            <span class="mode-indicator" aria-hidden="true"></span>
+            <span class="mode-title" id="m-clear-title">高清无损穿透</span>
+          </div>
+          <span class="mode-desc" id="m-clear-desc">底层窗口 100% 无模糊穿透，仅内部卡片毛玻璃</span>
+        </button>
+        <button type="button" class="mode-btn" data-mode="acrylic" role="radio" aria-checked="false" aria-selected="false">
+          <div class="mode-btn-header">
+            <span class="mode-indicator" aria-hidden="true"></span>
+            <span class="mode-title" id="m-acrylic-title">Win11 原生重度亚克力</span>
+          </div>
+          <span class="mode-desc" id="m-acrylic-desc">系统 DWM 重度磨砂模糊窗口后方内容</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- 2. See-Through Opacity Hierarchy -->
+    <section class="card">
+      <div class="card-header">
+        <div class="card-header-titles">
+          <h2 id="sec-opacity">晴空蓝透视度调节</h2>
+          <span class="muted small" id="sec-opacity-hint">数值越低，窗口后面的桌面与内容越清晰</span>
+        </div>
+      </div>
+
+      <div class="control-row">
+        <div class="control-label">
+          <label for="rng-bg-opacity" id="lbl-bg-opacity">主画布晴空滤镜浓度 (Canvas)</label>
+          <output id="val-bg-opacity" for="rng-bg-opacity">22 %</output>
+        </div>
+        <div class="slider-wrapper">
+          <input type="range" id="rng-bg-opacity" min="0" max="85" step="1" value="22" aria-labelledby="lbl-bg-opacity">
+        </div>
+      </div>
+
+      <div class="control-row">
+        <div class="control-label">
+          <label for="rng-sidebar-opacity" id="lbl-sidebar-opacity">顶栏与侧边栏天蓝浓度 (Sidebar)</label>
+          <output id="val-sidebar-opacity" for="rng-sidebar-opacity">42 %</output>
+        </div>
+        <div class="slider-wrapper">
+          <input type="range" id="rng-sidebar-opacity" min="8" max="90" step="1" value="42" aria-labelledby="lbl-sidebar-opacity">
+        </div>
+      </div>
+
+      <div class="control-row">
+        <div class="control-label">
+          <label for="rng-card-opacity" id="lbl-card-opacity">对话气泡与输入框云白浓度 (Cards)</label>
+          <output id="val-card-opacity" for="rng-card-opacity">58 %</output>
+        </div>
+        <div class="slider-wrapper">
+          <input type="range" id="rng-card-opacity" min="15" max="92" step="1" value="58" aria-labelledby="lbl-card-opacity">
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Refraction & Blur Parameters -->
+    <section class="card">
+      <div class="card-header">
+        <div class="card-header-titles">
+          <h2 id="sec-refraction">内部毛玻璃折射与冰晶高光</h2>
+        </div>
+        <button type="button" class="link-btn" id="reset-btn" title="Reset all settings to default">恢复默认</button>
+      </div>
+
+      <div class="control-row">
+        <div class="control-label">
+          <label for="rng-blur" id="lbl-blur">组件高斯模糊半径 (Blur)</label>
+          <output id="val-blur" for="rng-blur">22 px</output>
+        </div>
+        <div class="slider-wrapper">
+          <input type="range" id="rng-blur" min="0" max="48" step="1" value="22" aria-labelledby="lbl-blur">
+        </div>
+      </div>
+
+      <div class="control-row">
+        <div class="control-label">
+          <label for="rng-saturation" id="lbl-saturation">晴空色彩饱和度增强 (Saturation)</label>
+          <output id="val-saturation" for="rng-saturation">190 %</output>
+        </div>
+        <div class="slider-wrapper">
+          <input type="range" id="rng-saturation" min="100" max="240" step="5" value="190" aria-labelledby="lbl-saturation">
+        </div>
+      </div>
+
+      <div class="control-row">
+        <div class="control-label">
+          <label for="rng-specular" id="lbl-specular">冰白边缘折射高光 (Specular Rim)</label>
+          <output id="val-specular" for="rng-specular">75 %</output>
+        </div>
+        <div class="slider-wrapper">
+          <input type="range" id="rng-specular" min="0" max="100" step="2" value="75" aria-labelledby="lbl-specular">
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Host Integration Options -->
+    <section class="card">
+      <div class="card-header">
+        <div class="card-header-titles">
+          <h2 id="sec-integration">宿主联动设置</h2>
+        </div>
+      </div>
+      <label class="check-row">
+        <span class="check-label-text" id="lbl-floating-pill">在主窗口右上角显示「晴空碧海」一键开关胶囊</span>
+        <input type="checkbox" id="chk-floating-pill" checked aria-labelledby="lbl-floating-pill">
+      </label>
+      <label class="check-row">
+        <span class="check-label-text" id="lbl-pulse-glass">为 Antigrative Dashboard 状态栏同步启用晴空蓝毛玻璃</span>
+        <input type="checkbox" id="chk-pulse-glass" checked aria-labelledby="lbl-pulse-glass">
+      </label>
+    </section>
+  </div>
+
+  <script type="module" src="/app.js"></script>
+</body>
+</html>

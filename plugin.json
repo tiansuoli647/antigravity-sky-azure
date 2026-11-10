@@ -1,0 +1,12 @@
+{
+  "name": "antigravity-glass",
+  "displayName": "SkyAzure Glass (Antigravity Sky Azure)",
+  "display_name": "SkyAzure Glass (Antigravity Sky Azure)",
+  "description": "晴空碧海（Sky Azure）单主题窗口级透视毛玻璃光学引擎，支持 Windows 11 DWM 桌面透视、高斯模糊与折射高光调节。",
+  "version": "2.1.0",
+  "author": "tiansuoli647",
+  "license": "MIT",
+  "repository": "https://github.com/tiansuoli647/antigravity-sky-azure",
+  "homepage": "https://github.com/tiansuoli647/antigravity-sky-azure",
+  "logo": "assets/logo.svg"
+}
