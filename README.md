@@ -19,11 +19,11 @@
 </p>
 
 <p align="center">
-  <img src="assets/hero-showcase.png" alt="SkyAzure Glass Hero Showcase" width="100%" />
+  <img src="assets/preview.jpg" alt="SkyAzure Glass Real-World Preview" width="100%" />
   <br />
-  <sub><b>图 1：晴空碧海全景透视主视觉展示</b>（Antigravity IDE 晴空碧海主窗口实时穿透 Windows 11 桌面景深，包含顶栏 <code>Sky Glass · ON</code> 悬浮胶囊、42% 侧栏、22% 高透主画布、58% 菲涅尔冰晶高光卡片与右侧 Studio 控制台）</sub>
+  <sub><b>图 1：晴空碧海实机运行视觉效果</b>（Antigravity IDE 晴空碧海（Sky Azure）实机运行效果——搭载 DWM 窗口后方透视与天蓝径向散射滤镜、3.8% 分形微颗粒噪点（Fractal Noise）、右上角 <code>晴空碧海 · 已开启</code> 快捷悬浮胶囊（Quick Floating Pill）以及底部高透冰晶磨砂输入框（Frosted Glass Composer））</sub>
   <br />
-  <sub><i>Figure 1: Full-scene perspective showcase of SkyAzure Glass in Antigravity IDE penetrating Windows 11 desktop depth of field, featuring top floating capsule (<code>Sky Glass · ON</code>), 42% sidebar, 22% canvas, 58% Fresnel specular cards, and Studio console.</i></sub>
+  <sub><i>Figure 1: Real-world operational preview of SkyAzure Glass in Antigravity IDE featuring DWM behind-window transparency with sky-azure radial scattering filter, 3.8% fractal noise grain, top-right <code>晴空碧海 · 已开启</code> quick floating pill, and bottom high-transparency frosted glass composer.</i></sub>
 </p>
 
 ---
@@ -201,7 +201,7 @@ antigravity-sky-azure/
 ├── README.md                    # 项目工程与光学规范中英说明文档
 ├── plugin.json                  # Antigravity 插件清单与元数据说明
 ├── assets/
-│   ├── hero-showcase.png        # 晴空碧海桌面景深全景主视觉展示图 (Hero Showcase)
+│   ├── preview.jpg              # 实机运行主视觉预览图 (Real-world window preview)
 │   ├── logo.svg                 # 晴空碧海矢量徽标 (Sky Azure Vector Brand)
 │   ├── optical-comparison.png   # 光学穿透模式与三级景深梯度对比图 (Optical Comparison)
 │   └── studio-panel.png         # Studio 控制台明暗双模与双语界面展示图 (Studio Panel Showcase)
